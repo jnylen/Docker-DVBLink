@@ -5,7 +5,7 @@
 FROM ubuntu:14.04
 
 # File Author / Maintainer
-MAINTAINER chvb
+MAINTAINER jnylen
 
 # Update the repository sources list
 RUN apt-get update -q
