@@ -24,6 +24,10 @@ RUN dpkg -i dvblink-server-pc-linux-ubuntu-64bit.deb
 RUN chmod 777 -R /opt/DVBLink/
 RUN chmod 777 -R /usr/local/bin/dvblink/
 RUN ln -s /usr/local/bin/dvblink/share /share
+RUN mkdir -p /share/licenses
+RUN chmod 777 -R /share/licenses
+RUN mkdir -p /share/xmltv
+RUN chmod 777 -R /share/xmltv
 RUN mkdir -p /var/log/supervisord
 RUN mkdir -p /var/run/sshd
 RUN mkdir /var/run/dbus
