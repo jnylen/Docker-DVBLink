@@ -30,10 +30,12 @@ RUN mkdir -p /share/licenses
 RUN chmod 777 -R /share/licenses
 RUN mkdir -p /share/xmltv
 RUN chmod 777 -R /share/xmltv
+RUN mkdir -p /share/RecordedTV
 RUN ln -s /share/RecordedTV /recordings
 RUN chmod 777 -R /recordings
 
 ## Configs
+RUN mkdir -p /config
 RUN ln -s /config /usr/local/bin/dvblink/config
 RUN chmod 777 -R /config
 
@@ -42,6 +44,7 @@ RUN touch /usr/local/bin/dvblink/dvblink_reg.log
 RUN touch /usr/local/bin/dvblink/dvblink_server.log
 RUN touch /usr/local/bin/dvblink/dvblink_webserver.log
 RUN touch /usr/local/bin/dvblink/dvblink_install.log
+RUN mkdir -p /logs
 RUN chmod 777 -R /logs
 RUN ln /usr/local/bin/dvblink/dvblink_reg.log /logs/dvblink_reg.log
 RUN ln /usr/local/bin/dvblink/dvblink_server.log /logs/dvblink_server.log
