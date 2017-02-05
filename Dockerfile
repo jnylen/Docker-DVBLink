@@ -23,6 +23,7 @@ RUN ./dl.sh
 RUN dpkg -i dvblink-server-pc-linux-ubuntu-64bit.deb
 RUN chmod 777 -R /opt/DVBLink/
 RUN chmod 777 -R /usr/local/bin/dvblink/
+RUN ln -s /usr/local/bin/dvblink/share /share
 RUN mkdir -p /var/log/supervisord
 RUN mkdir -p /var/run/sshd
 RUN mkdir /var/run/dbus
@@ -36,7 +37,7 @@ ADD /etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.c
 EXPOSE 39876 8100
 
 # set Directories
-VOLUME ["/config", "/recordings", "/logs"]
+VOLUME ["/config", "/recordings", "/logs", "/share"]
 
 # Startup
 ENTRYPOINT ["/usr/bin/supervisord"]
