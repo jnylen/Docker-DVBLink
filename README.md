@@ -13,7 +13,9 @@ Enjoy your favorite programs on all TV screens in house with Kodi and DLNA clien
 ## Volumes
 
 DVBLogic is quite locked down, directory-wise. Currently only `/share` and `/recordings` are used.
+
 Everything else is splitted up by DVBLogic to different files.
+
 Currently the volumes are:
 
 * `/recordings` - Recordings folder. You'll need to change to this directory in the settings
@@ -24,7 +26,6 @@ Currently the volumes are:
 ## Ports
 
 It's recommended to run the docker with `--net=host` to be able to use IPTV without issues.
-Maybe more.
 
 * `39876` - DVBLink config port.
 * `8100` - DVBLink tvguide port.
@@ -32,3 +33,5 @@ Maybe more.
 ## Info
 
 Tried and works with Rancher.
+
+Read more at http://dvblogic.com
