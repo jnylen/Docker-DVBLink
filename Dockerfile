@@ -24,32 +24,11 @@ RUN dpkg -i dvblink-server-pc-linux-ubuntu-64bit.deb
 RUN chmod 777 -R /opt/DVBLink/
 RUN chmod 777 -R /usr/local/bin/dvblink/
 
-## Share
-RUN ln -s /share /usr/local/bin/dvblink/share
-RUN mkdir -p /share/licenses
-RUN chmod 777 -R /share/licenses
-RUN mkdir -p /share/xmltv
-RUN chmod 777 -R /share/xmltv
-RUN mkdir -p /share/RecordedTV
-RUN ln -s /share/RecordedTV /recordings
-RUN chmod 777 -R /recordings
+## Data
+RUN ln -s /opt/DVBLink /data
 
-## Configs
-RUN mkdir -p /config
-RUN ln -s /config /usr/local/bin/dvblink/config
-RUN chmod 777 -R /config
-
-## Logs
-RUN touch /usr/local/bin/dvblink/dvblink_reg.log
-RUN touch /usr/local/bin/dvblink/dvblink_server.log
-RUN touch /usr/local/bin/dvblink/dvblink_webserver.log
-RUN touch /usr/local/bin/dvblink/dvblink_install.log
-RUN mkdir -p /logs
-RUN chmod 777 -R /logs
-RUN ln /usr/local/bin/dvblink/dvblink_reg.log /logs/dvblink_reg.log
-RUN ln /usr/local/bin/dvblink/dvblink_server.log /logs/dvblink_server.log
-RUN ln /usr/local/bin/dvblink/dvblink_webserver.log /logs/dvblink_webserver.log
-RUN ln /usr/local/bin/dvblink/dvblink_install.log /logs/dvblink_install.log
+## Config
+RUN ln -s /usr/local/bin/dvblink/config /config
 
 RUN mkdir -p /var/log/supervisord
 RUN mkdir -p /var/run/sshd
@@ -60,12 +39,12 @@ RUN echo docker:test123 | chpasswd
 ADD /etc/supervisor/conf.d/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 ##################### INSTALLATION END #####################
 
+# Startup
+ENTRYPOINT ["/usr/bin/supervisord"]
+CMD ["-c", "/etc/supervisor/conf.d/supervisord.conf"]
+
 # Expose the default portonly 39876 is nessecary for admin access
 EXPOSE 39876 8100
 
 # set Directories
-VOLUME ["/config", "/recordings", "/logs", "/share"]
-
-# Startup
-ENTRYPOINT ["/usr/bin/supervisord"]
-CMD ["-c", "/etc/supervisor/conf.d/supervisord.conf"]
+VOLUME ["/config", "/recordings", "/data"]
