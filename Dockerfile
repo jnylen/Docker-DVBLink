@@ -23,11 +23,31 @@ RUN ./dl.sh
 RUN dpkg -i dvblink-server-pc-linux-ubuntu-64bit.deb
 RUN chmod 777 -R /opt/DVBLink/
 RUN chmod 777 -R /usr/local/bin/dvblink/
-RUN ln -s /usr/local/bin/dvblink/share /share
+
+## Share
+RUN ln -s /share /usr/local/bin/dvblink/share
 RUN mkdir -p /share/licenses
 RUN chmod 777 -R /share/licenses
 RUN mkdir -p /share/xmltv
 RUN chmod 777 -R /share/xmltv
+RUN ln -s /share/RecordedTV /recordings
+RUN chmod 777 -R /recordings
+
+## Configs
+RUN ln -s /config /usr/local/bin/dvblink/config
+RUN chmod 777 -R /config
+
+## Logs
+RUN touch /usr/local/bin/dvblink/dvblink_reg.log
+RUN touch /usr/local/bin/dvblink/dvblink_server.log
+RUN touch /usr/local/bin/dvblink/dvblink_webserver.log
+RUN touch /usr/local/bin/dvblink/dvblink_install.log
+RUN chmod 777 -R /logs
+RUN ln /usr/local/bin/dvblink/dvblink_reg.log /logs/dvblink_reg.log
+RUN ln /usr/local/bin/dvblink/dvblink_server.log /logs/dvblink_server.log
+RUN ln /usr/local/bin/dvblink/dvblink_webserver.log /logs/dvblink_webserver.log
+RUN ln /usr/local/bin/dvblink/dvblink_install.log /logs/dvblink_install.log
+
 RUN mkdir -p /var/log/supervisord
 RUN mkdir -p /var/run/sshd
 RUN mkdir /var/run/dbus

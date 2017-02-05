@@ -18,10 +18,10 @@ Everything else is splitted up by DVBLogic to different files.
 
 Currently the volumes are:
 
-* `/recordings` - Recordings folder. You'll need to change to this directory in the settings
+* `/recordings` - Recordings folder.
 * `/share` - Where all sources, xmltv etc is located. **Required**
-* `/config` - **Unused** config folder.
-* `/logs` - **Unused** logs folder.
+* `/config` - Config folder.
+* `/logs` - Logs folder.
 
 ## Ports
 
